@@ -30,6 +30,7 @@ void setup()
   wave1Error = true; // Assume wave is not outputting
   wave2Error = true;
   motorDirectionPrev = forward;
+  motorDirection = forward;
   rpm = 0;
   rpmPrev = 0;
   directionChangeCounter = 0;
@@ -139,7 +140,7 @@ void CalculateSpeed()
     
     if(rpm == 0)
     {
-      motorDirection = stopped;
+      //motorDirection = stopped;
     }
     
     time = millis();
@@ -150,19 +151,21 @@ void CalculateSpeed()
 // Outpout to the serial monitor or LEDs
 void Output()
 {
-  digitalWrite(error1Pin, wave1Error);
-  digitalWrite(error2Pin, wave2Error);
+  //digitalWrite(error1Pin, wave1Error);
+  //digitalWrite(error2Pin, wave2Error);
+  
+  //Serial.println(String(motorDirection)); // output
   
   if(motorDirection != motorDirectionPrev) // Direction change
   {
-    digitalWrite(motorDirectionPrev, LOW);
-    digitalWrite(motorDirection, HIGH);
-    //Serial.println(String(motorDirection)); // output
+    //digitalWrite(motorDirectionPrev, LOW);
+    //digitalWrite(motorDirection, HIGH);
+    Serial.println(String(motorDirection)); // output
   }
   
   if(rpm != rpmPrev)
   {
-    Serial.println(String(rpm)); // output
+    //Serial.println(String(rpm)); // output
   }
 }
 
